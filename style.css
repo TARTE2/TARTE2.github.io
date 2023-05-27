@@ -18,6 +18,11 @@ h1{
     font-style: italic;
 }
 
+img {
+    width: 20%;
+    height: auto;
+}
+
 
 
 p{
@@ -71,6 +76,15 @@ header{
     border-radius: 5px;
     
 
+}
+
+div{
+   display: flex; 
+   padding: 2em 10em 2em 10em;
+}
+
+.box1 {
+    padding: 100em;
 }
 /* Debut Slider */
 .att{
