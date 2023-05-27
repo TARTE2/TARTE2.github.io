@@ -18,10 +18,7 @@ h1{
     font-style: italic;
 }
 
-img {
-    width: 20%;
-    height: auto;
-}
+
 
 
 
@@ -77,15 +74,33 @@ header{
     
 
 }
+/*A propos de moi*/
+.pp {
+    width: 20%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25) ;
+}
 
-div{
+body.dark-mode .pp{
+    
+    box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.4);
+}
+.box1{
    display: flex; 
-   padding: 2em 10em 2em 10em;
+   padding: 2em;
+   justify-content: space-evenly;
+   
+}
+.box1 p{
+    line-height: 2rem;
 }
 
-.box1 {
-    padding: 100em;
-}
+
+
+/*Fin de A propos de moi*/
+
+
 /* Debut Slider */
 .att{
     padding: 2rem  ;
