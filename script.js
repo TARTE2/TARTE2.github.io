@@ -28,6 +28,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+window.addEventListener('scroll', function() {
+  var menu = document.querySelector('.sticky-menu');
+  var scrollPosition = window.scrollY;
+
+  if (scrollPosition > 0) {
+    menu.classList.add('sticky');
+  } else {
+    menu.classList.remove('sticky');
+  }
+});
+
 
 
 
