@@ -12,4 +12,22 @@ darkModeToggle.addEventListener('click', function() {
 });
 
 
+document.addEventListener('DOMContentLoaded', function() {
+  const items = document.querySelectorAll('.item');
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      items.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+        }
+      });
+      item.classList.toggle('active');
+    });
+  });
+});
+
+
+
+
 
