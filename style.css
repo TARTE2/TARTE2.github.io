@@ -151,7 +151,8 @@ body.dark-mode .pp{
 /*Portfolio*/
 .linkprojects{
     display: flex;
-    justify-content: center;  
+    justify-content: center;
+    padding-top: 40em;
 }
 
 .linkprojects a{
@@ -248,6 +249,10 @@ body.dark-mode .pp{
 .dark-mode .item img  {
     filter: invert(100%);
   }
+
+.boxtest{
+    opacity: 0;
+}
   
   
   

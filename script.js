@@ -1,43 +1,74 @@
-var darkModeToggle = document.getElementById('darkModeToggle');
-var body = document.body;
+$(document).ready(function () {
+    // Check for user preference and apply dark mode if enabled
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        $('body').addClass('dark-mode');
+    }
 
-// Vérifier si le mode sombre est activé par défaut
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  body.classList.add('dark-mode');
+    // Toggle dark mode on button click
+    $('#darkModeToggle').click(function () {
+        $('body').toggleClass('dark-mode');
+        // Smooth transition for better user experience
+        $('body').css('transition', 'background-color 0.3s ease');
+    });
+
+    $('#aboutMe').append(createSectionOneHtml())
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    gsap.to('.boxtest', {
+        opacity: 1,
+        x: 50,
+
+        scrollTrigger: {
+            trigger: '.boxtest',
+            start: '0% 70%',
+            end: '30% 80%',
+            scrub: true,
+            markers: true, // Voir les marqueurs pour débogage
+        }
+    });
+
+    // gsap.to('.boxtest', {
+    //     opacity: 1, // L'opacité augmente jusqu'à 1 avant de redescendre
+    //     scrollTrigger: {
+    //         trigger: '.boxtest',
+    //         start: '0% 80%',  // Commence l'augmentation à ce point
+    //         end: '100% 85%',  // Commence à diminuer après ce point
+    //         scrub: true,      // Synchronisation avec le défilement
+    //         markers: true,    // Marqueurs visibles pour débogage
+    //         onUpdate: function(self) {
+    //             const progress = self.progress; // Progrès de l'animation entre 0 et 1
+    //             const newOpacity = progress <= 0.5 ? progress * 2 : 2 - (progress * 2); // Augmentation puis réduction
+    //             gsap.set('.boxtest', { opacity: newOpacity });
+    //         }
+    //     }
+    // });
+
+
+
+
+
+
+});
+
+function  createSectionOneHtml(){
+    const birthDate = new Date('2004-01-07');
+    const currentDate = new Date();
+
+    let age = currentDate.getFullYear() - birthDate.getFullYear();
+
+    return `<h1>À propos de moi</h1>
+        <div class="box1">
+            <img class="pp" src="images/Ewen2-min.jpg" alt="photo Ewen FILY">
+            <div class="box2">
+                <h2>Ewen FILY </h2>
+                <p>${age} ans <br> Actuellement en 3<sup>ème</sup> année à l'IUT de Lannion en BUT informatique.</br></p>
+                <p class="cv-bt"><a href="/documents/FILY_Ewen_CV_links.pdf" target="_blank">Mon CV</a></p>
+            </div>
+        </div>`;
+
 }
 
-darkModeToggle.addEventListener('click', function() {
-  body.classList.toggle('dark-mode');
-  body.style.transition = 'background-color 0.3s ease';
-});
-
-
-document.addEventListener('DOMContentLoaded', function() {
-  const items = document.querySelectorAll('.item');
-
-  items.forEach(item => {
-    item.addEventListener('click', () => {
-      items.forEach(otherItem => {
-        if (otherItem !== item) {
-          otherItem.classList.remove('active');
-        }
-      });
-      item.classList.toggle('active');
-    });
-  });
-});
-
-
-window.addEventListener('scroll', function() {
-  var menu = document.querySelector('.sticky-menu');
-  var scrollPosition = window.scrollY;
-
-  if (scrollPosition > 0) {
-    menu.classList.add('sticky');
-  } else {
-    menu.classList.remove('sticky');
-  }
-});
 
 
 

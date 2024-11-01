@@ -11,8 +11,12 @@
     <link rel="icon" href="images/icon/dossier-de-portefeuille 256.png">
     <link rel="icon" href="images/icon/dossier-de-portefeuille 512.png">
 
-    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="assets/jquery-3.7.1.min.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
 <header id="home">
@@ -20,10 +24,11 @@
         <i class="fas fa-home"></i> Home
     </a>
 
+
     <div class="container">
         <ul class="menu">
-            <li><a href="#section1">À propos de moi</a></li>
-            <li><a href="#section2">Portfolio</a></li>
+            <li><a href="#aboutMe">À propos de moi</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#section3">Contacts</a></li>
             <li id="darkModeToggle">
                 <button class="dark-mode-button" aria-label="Dark Mode"></button>
@@ -32,27 +37,13 @@
     </div>
 </header>
 <main>
-    <section id="section1">
-        <h1>À propos de moi</h1>
-        <div class="box1">
-            <img class="pp" src="images/Ewen2-min.jpg" alt="photo Ewen FILY">
-            <div class="box2">
-                <h2>Ewen FILY </h2>
-                <p>20 ans <br> Actuellement en 3<sup>ème</sup> année à l'IUT de Lannion en BUT informatique.</br>
-                </p>
-
-                <p class="cv-bt"><a href="/documents/FILY_Ewen_CV_links.pdf" target="_blank">Mon CV</a></p>
-            </div>
-
-        </div>
-
+    <section id="aboutMe">
     </section>
 
-    <section id="section2">
+    <section id="portfolio" class="boxtest">
         <h1>Portfolio</h1>
         <p>Mon portfolio présente une sélection de mes projets les plus récents, mettant en valeur mes compétences et
-            mes
-            réalisations.
+            mes réalisations.
             <br>J'ai travaillé sur des projets variés tels que la réalistion de site Web, la création d'algorithme dans
             divers langages
         </p>
@@ -143,10 +134,7 @@
             <li><a href="mailto:ewen.fily@etudiant.univ-rennes1.fr"> ewen.fily@etudiant.univ-rennes1.fr </a></li>
             <li><a href="https://www.linkedin.com/in/ewen-fily-0b8164279/" target="_blank">LinkedIn</a></li>
         </ul>
-
-
     </section>
-
 </main>
 
 
@@ -155,13 +143,7 @@
         <a href="https://iut-lannion.univ-rennes.fr/" target="_blank">
             <img src="/images/icon/Logo_IUT_Lannion.svg" alt="logo IUT lannion">
         </a>
-
     </div>
-
-
 </footer>
-
-
-<script src="script.js"></script>
 </body>
 </html>
