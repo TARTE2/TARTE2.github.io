@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Positionner le modèle dans le groupe
             group.add(model);
-            model.position.set(0, -3, 0); // Position par rapport au groupe
-            model.scale.set(10, 10, 10); // Ajustez la taille si nécessaire
+            model.position.set(0, -1, 0); // Position par rapport au groupe
+            model.scale.set(4, 4, 4); // Ajustez la taille si nécessaire
 
             // Ajouter une lumière ambiante pour un éclairage diffus de base
             const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Couleur blanche, intensité 0.5
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Effectuer la rotation du groupe uniquement si en rotation
                 if (group && rotating) {
-                    //group.rotation.y += 0.01; // Faites tourner le groupe autour de l'axe Y
+                    group.rotation.y += 0.01; // Faites tourner le groupe autour de l'axe Y
                     //group.rotation.x += 0.005; // Optionnel: rotation autour de l'axe X
                 }
 
@@ -152,6 +152,4 @@ document.addEventListener('DOMContentLoaded', function() {
         isMovingCamera = false; // Réinitialiser le déplacement de la caméra
     });
 
-    // Lancer la boucle de rendu
-    loop();
 });

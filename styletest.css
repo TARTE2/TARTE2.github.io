@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap');
 
 
-canvas{
-    width: 900px;
-    height: 450px;
+body{
+    background: grey;
 }
