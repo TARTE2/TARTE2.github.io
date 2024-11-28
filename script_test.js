@@ -7,79 +7,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); // Activer l'anticrénelage
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    document.body.appendChild(renderer.domElement); // Ajoutez le renderer à la page
+    document.body.appendChild(renderer.domElement);// Ajoutez le renderer à la page
+
+    // Sélectionnez l'élément du slider pour la taille
+    const $scaleSlider = $('#scaleSlider');
+    const $rotateSlider = $('#rotateSlider');
+
+    // Sélectionnez les éléments de la checkbox
+    const $rotationCheckbox = $('#rotationCheckbox');
 
     const loader = new THREE.GLTFLoader();
     let model; // Déclarez la variable pour le modèle en dehors de la fonction de chargement
 
-    loader.load(
-        'model/halo_reach_emile-a239.glb',
-        function (gltf) {
-            model = gltf.scene; // Affectez le modèle à la variable
-            console.log("Modèle chargé avec succès", model); // Log pour vérifier le chargement
-
-            // Créer un groupe pour changer le centre de rotation
-            const group = new THREE.Group();
-            scene.add(group);
-
-            // Positionner le modèle dans le groupe
-            group.add(model);
-            model.position.set(0, -1, 0); // Position par rapport au groupe
-            model.scale.set(4, 4, 4); // Ajustez la taille si nécessaire
-
-            // Ajouter une lumière ambiante pour un éclairage diffus de base
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Couleur blanche, intensité 0.5
-            scene.add(ambientLight);
-
-            // Ajouter des lumières directionnelles pour un éclairage doux
-            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.5); // Intensité 0.5
-            directionalLight1.position.set(0, 5, 5).normalize(); // Positionner la lumière
-            scene.add(directionalLight1);
-
-            const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5); // Intensité 0.5
-            directionalLight2.position.set(0, -5, -5).normalize(); // Positionner la lumière
-            scene.add(directionalLight2);
-
-            const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.5); // Intensité 0.5
-            directionalLight3.position.set(5, 0, 5).normalize(); // Positionner la lumière
-            scene.add(directionalLight3);
-
-            const directionalLight4 = new THREE.DirectionalLight(0xffffff, 0.5); // Intensité 0.5
-            directionalLight4.position.set(-5, 0, -5).normalize(); // Positionner la lumière
-            scene.add(directionalLight4);
-
-            // Compte des sommets et des faces
-            let totalVertices = 0;
-            let totalFaces = 0;
-            model.traverse((node) => {
-                if (node.isMesh) {
-                    totalVertices += node.geometry.attributes.position.count;
-                    totalFaces += node.geometry.index ? node.geometry.index.count / 3 : node.geometry.attributes.position.count / 3;
-                }
-            });
-            console.log("Nombre total de sommets (vertices) :", totalVertices);
-            console.log("Nombre total de faces :", totalFaces);
-
-            // Mise à jour de la fonction de rendu pour faire tourner le groupe
-            function loop() {
-                requestAnimationFrame(loop);
-
-                // Effectuer la rotation du groupe uniquement si en rotation
-                if (group && rotating) {
-                    group.rotation.y += 0.01; // Faites tourner le groupe autour de l'axe Y
-                    //group.rotation.x += 0.005; // Optionnel: rotation autour de l'axe X
-                }
-
-                renderer.render(scene, camera);
-            }
-
-            loop(); // Lancer la boucle de rendu
-        },
-        undefined,
-        function (error) {
-            console.error('Erreur lors du chargement du modèle :', error);
-        }
-    );
+    loadModel('model/halo_reach_emile-a239.glb',scene);
 
     let rotating = true; // Variable pour contrôler la rotation
     let lastMouseX, lastMouseY; // Pour le suivi de la souris
@@ -88,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let previousMousePosition = { x: 0, y: 0 }; // Position précédente de la souris
 
     // Événement pour le zoom
-    window.addEventListener('wheel', (event) => {
+    $('canvas').on('wheel', (event) => {
         event.preventDefault(); // Empêche le défilement de la page
         camera.position.z += event.deltaY * 0.003; // Zoom avant/arrière
 
@@ -100,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Événements pour changer l'orientation de l'objet
-    window.addEventListener('mousedown', (event) => {
+    $('canvas').on('mousedown', function(event) {
         if (event.button === 0) { // Clic gauche
             isMouseDown = true;
             lastMouseX = event.clientX;
@@ -121,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    window.addEventListener('mousemove', (event) => {
+    $('canvas').on('mousemove', (event) => {
         if (isMouseDown) {
             if (isMovingCamera) {
                 const deltaX = event.clientX - previousMousePosition.x;
@@ -147,9 +87,124 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    window.addEventListener('mouseup', () => {
+    $(window).on('mouseup', () => {
         isMouseDown = false;
         isMovingCamera = false; // Réinitialiser le déplacement de la caméra
     });
 
+    function handleFile(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const content = e.target.result;
+
+            // Convert ArrayBuffer to Blob
+            const blob = new Blob([content], { type: 'model/gltf-binary' });
+            // Create a temporary URL for the blob
+            const url = URL.createObjectURL(blob);
+
+            loadModel(url, scene);
+        };
+        reader.readAsArrayBuffer(file);
+    }
+
+    let currentGroup = null; // Conserver une référence au groupe actuel
+
+    function loadModel(content, scene) {
+        console.log(content)
+        loader.load(
+            content,
+            function (gltf) {
+                model = gltf.scene; // Affectez le modèle à la variable
+                console.log("Modèle chargé avec succès", model);
+
+                // Supprimer l'ancien groupe s'il existe
+                if (currentGroup) {
+                    scene.remove(currentGroup);
+                    currentGroup.traverse((node) => {
+                        if (node.isMesh) {
+                            node.geometry.dispose(); // Libérer la géométrie
+                            if (node.material) {
+                                if (Array.isArray(node.material)) {
+                                    node.material.forEach((material) => material.dispose());
+                                } else {
+                                    node.material.dispose(); // Libérer le matériel
+                                }
+                            }
+                        }
+                    });
+                    currentGroup = null; // Réinitialiser la référence
+                }
+
+                // Créer un nouveau groupe pour le modèle
+                let group = new THREE.Group();
+                scene.add(group);
+                currentGroup = group; // Mettre à jour la référence
+
+                // Positionner le modèle dans le groupe
+                group.add(model);
+                model.position.set(0, -1, 0); // Position par rapport au groupe
+                model.scale.set(4, 4, 4); // Ajustez la taille si nécessaire
+
+                // Ajouter les lumières (si nécessaire, vous pourriez déplacer ces lumières hors de cette fonction si elles sont constantes)
+                let ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+                scene.add(ambientLight);
+
+                let directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.5);
+                directionalLight1.position.set(0, 5, 5).normalize();
+                scene.add(directionalLight1);
+
+                // Compte des sommets et des faces
+                let totalVertices = 0;
+                let totalFaces = 0;
+                model.traverse((node) => {
+                    if (node.isMesh) {
+                        totalVertices += node.geometry.attributes.position.count;
+                        totalFaces += node.geometry.index
+                            ? node.geometry.index.count / 3
+                            : node.geometry.attributes.position.count / 3;
+                    }
+                });
+                console.log("Nombre total de sommets (vertices) :", totalVertices);
+                console.log("Nombre total de faces :", totalFaces);
+
+                // Mise à jour de la fonction de rendu pour faire tourner le groupe
+                function loop() {
+                    requestAnimationFrame(loop);
+                    rotating = !$rotationCheckbox.prop('checked');
+
+                    model.scale.set(
+                        4 * $scaleSlider.val(),
+                        4 * $scaleSlider.val(),
+                        4 * $scaleSlider.val()
+                    );
+
+                    // Effectuer la rotation du groupe uniquement si en rotation
+                    if (group && rotating) {
+                        group.rotation.y += 0.01 * $rotateSlider.val(); // Faites tourner le groupe autour de l'axe Y
+                    }
+
+                    renderer.render(scene, camera);
+                }
+
+                loop(); // Lancer la boucle de rendu
+            },
+            undefined,
+            function (error) {
+                console.error('Erreur lors du chargement du modèle :', error);
+            }
+        );
+    }
+
+
+    $('#fileInput').on('change', handleFile);
+
 });
+
+
+
+

@@ -3,4 +3,19 @@
 
 body{
     background: grey;
+    font-family: 'Roboto Mono',sans-serif;
+}
+
+.tab-content{
+    background: white;
+    width: min-content;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+#scale-box, #rotate-box{
+    display: flex;
+    width: 18em;
+    justify-content: space-between;
 }

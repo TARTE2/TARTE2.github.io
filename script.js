@@ -43,12 +43,6 @@ $(document).ready(function () {
     //         }
     //     }
     // });
-
-
-
-
-
-
 });
 
 function  createSectionOneHtml(){
