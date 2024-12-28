@@ -2,7 +2,7 @@
 
 html{
     background-color: #f2f2f2;
-    font-family: 'Roboto Mono',sans-serif; 
+    font-family: 'Roboto Mono',sans-serif;
     scroll-behavior: smooth;
     display: flex;
 }
@@ -11,7 +11,7 @@ body{
     margin: 0;
     padding: 0;
     transform: background-color 0.3s ease;
-    
+
 }
 
 h1{
@@ -42,7 +42,7 @@ section{
     display: flex;
     justify-content: flex-end;
     padding: 20px;
-    
+
 }
 
 
@@ -51,7 +51,7 @@ section{
   }
 /* Menu et button home*/
 
-  
+
 header{
     display: flex;
     align-items: center ;
@@ -63,18 +63,18 @@ header{
 }
 .menu {
     display: flex;
-    
-    list-style: none;  
+
+    list-style: none;
 }
 
 .menu li {
     margin-left: 20px;
-    
+
     cursor: pointer;
     outline: none;
     border-radius: 5px;
     text-decoration: none;
-    
+
 }
 
 
@@ -84,9 +84,9 @@ header{
     transition: all 0.3s ease 0s;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     color: #000;
-    padding: 10px 10px; 
+    padding: 10px 10px;
     border-radius: 5px;
-    
+
 
 }
 /*A propos de moi*/
@@ -98,14 +98,14 @@ header{
 }
 
 body.dark-mode .pp{
-    
+
     box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.4);
 }
 .box1{
-   display: flex; 
+   display: flex;
    padding: 2em;
    justify-content: space-evenly;
-   
+
 }
 .box1 p{
     line-height: 2rem;
@@ -116,7 +116,7 @@ body.dark-mode .pp{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .box2 > :first-child{
@@ -127,15 +127,15 @@ body.dark-mode .pp{
     background-color: rgb(255, 255, 255);
     transition: all 0.3s ease 0s;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    padding: 10px 10px; 
+    padding: 10px 10px;
     border-radius: 5px;
-    
+
 }
 .dark-mode .cv-bt a{
     box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.4);
     background-color: rgb(0, 0, 0);
     color: #ffffff;
-    
+
 }
 .cv-bt a:hover{
     transform: translateY(-7px);
@@ -159,15 +159,15 @@ body.dark-mode .pp{
     background-color: rgb(255, 255, 255);
     transition: all 0.3s ease 0s;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    padding: 10px 10px; 
+    padding: 10px 10px;
     border-radius: 5px;
-    
+
 }
 .dark-mode .linkprojects a{
     box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.4);
     background-color: rgb(0, 0, 0);
     color: #ffffff;
-    
+
 }
 .linkprojects a:hover{
     transform: translateY(-7px);
@@ -179,36 +179,36 @@ body.dark-mode .pp{
     grid-template-columns: repeat(3, 1fr);
     gap: 100px;
   }
-  
+
   .item {
     text-align: center;
     position: relative;
     cursor: pointer;
     transition: transform 0.3s ease;
   }
-  
+
   .item h3 {
     font-size: 1.5rem;
     transition: all 0.3s ease;
   }
-  
+
   .item img {
     max-width: 100%;
     height: auto;
     transition: all 0.3s ease;
   }
-  
-  
-  
+
+
+
   .item .description,
   .item .full-description {
     opacity: 1;
     transition: all 0.3s ease;
   }
-  
+
   .dark-mode .item .full-description {
     color: #fff;
-    
+
   }
   .item .full-description {
     position: absolute;
@@ -222,9 +222,9 @@ body.dark-mode .pp{
     opacity: 0;
     box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.4);
     color: black;
-    
+
   }
-  
+
   .item.active .description {
     opacity: 0;
   }
@@ -234,7 +234,7 @@ body.dark-mode .pp{
   .item.active img {
     opacity: 0;
   }
-  
+
   .item.active .full-description {
     display: flex;
     text-align: justify;
@@ -244,7 +244,7 @@ body.dark-mode .pp{
   }
   .item img {
     width: 200px;
-    
+
   }
 .dark-mode .item img  {
     filter: invert(100%);
@@ -253,11 +253,34 @@ body.dark-mode .pp{
 .boxtest{
     opacity: 0;
 }
-  
-  
-  
-  
-  
+
+#project1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#container_project1{
+    align-self: center;
+    margin-left: 2em;
+}
+
+#img_threeJS {
+    width: 15em;
+    transition: all 0.3s ease 0s;
+
+}
+
+#img_threeJS:hover{
+    transform: translateY(-7px);
+}
+
+
+
+
+
+
+
 
 /*Fin Portfolio*/
 
@@ -269,7 +292,7 @@ body.dark-mode .pp{
     position: relative;
     max-width: 60rem;
     margin: 0 auto;
-    
+
 
 }
 
@@ -315,6 +338,8 @@ body.dark-mode .pp{
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+
 }
 /*Début Contats*/
 .adresses li a{
@@ -324,18 +349,22 @@ body.dark-mode .pp{
     color: #fff;
     transition: background-position 0.3s;
     border-radius: 5px;
+    padding: 2px;
 }
 
 .adresses li a:hover{
     background-position: 100% 0;
 
-    
+
+}
+.adresses li{
+    margin: 10px;
 }
 
 
 
 /*Fin contacts*/
-  
+
 /*Début dark mode */
 body.dark-mode .menu li a:hover {
     box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.4);
@@ -347,19 +376,19 @@ body.dark-mode .menu li a:hover {
     color: #ffffff;
     background-color: #000000;
     border-radius: 10px;
-    
+
     transform: translateY(-7px);
 }
 body.dark-mode .menu li a {
     box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.4);
-    
+
 }
 
 .home-button {
     position: fixed;
     top: 15;
     left: 1em;
-    
+
 
 
     z-index: 9999;
@@ -407,7 +436,12 @@ body.dark-mode header  {
 body.dark-mode {
     background-color: #000;
     color: #fff;
-  }
+}
+
+.svg-dark-mode path{
+    stroke: white;
+}
+
 
 
 
@@ -417,22 +451,21 @@ body.dark-mode {
     padding: 20px 20px;
     margin: 0;
     border: none;
-    
+
     background-color: transparent;
     border:#000;
     transition: all 0.3s ease 0s;
     cursor: pointer;
     background-image: url("./images/icon/brightness.png"); /* Chemin vers l'icône claire */
     background-size:contain;
-    
+
   }
   .dark-mode-button:hover{
     border-radius: 5px;
     transform: translateY(-7px);
-    
+
   }
 
-  
   body.dark-mode .dark-mode-button {
     background-image: url("./images/icon/night-mode.png"); /* Chemin vers l'icône sombre */
   }
@@ -442,53 +475,38 @@ body.dark-mode {
 
 footer {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
-footer div {
-    position: relative;
-    
+footer img {
+    background: #f2f2f2;
+    padding: 0.75em;
+    width: 4em;
+    border-radius: 15px;
+
 }
 
-footer a {
-    display: inline-block;
-    position: relative;
+#contact{
+    margin: 1em;
+}
+
+#container_btn_iut{
+    height: fit-content;
+    width: fit-content;
+    margin: 1em auto;
+    transition: all 0.3s ease 0s;
+
+}
+
+#container_btn_iut:hover{
+    transform: translateY(-7px);
+}
+
+#btn_iut{
     width: fit-content;
     height: fit-content;
-    
 }
-
-footer img {
-    display: block;
-    margin: 0 auto;
-    max-width: 10%;
-    height: auto;
-    background-color: #f2f2f2;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-footer a::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-
-
-
-
-
-
-
-  
-
-
-
 
 /*Fin du Footer*/
 

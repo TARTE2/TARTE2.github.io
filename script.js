@@ -2,13 +2,17 @@ $(document).ready(function () {
     // Check for user preference and apply dark mode if enabled
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         $('body').addClass('dark-mode');
+        $('#img_threeJS').addClass('svg-dark-mode');
     }
 
     // Toggle dark mode on button click
     $('#darkModeToggle').click(function () {
         $('body').toggleClass('dark-mode');
+        $('#img_threeJS').toggleClass('svg-dark-mode');
         // Smooth transition for better user experience
         $('body').css('transition', 'background-color 0.3s ease');
+        $('#img_threeJS').css('transition', 'background-color 0.3s ease');
+
     });
 
     $('#aboutMe').append(createSectionOneHtml())
@@ -28,21 +32,6 @@ $(document).ready(function () {
         }
     });
 
-    // gsap.to('.boxtest', {
-    //     opacity: 1, // L'opacité augmente jusqu'à 1 avant de redescendre
-    //     scrollTrigger: {
-    //         trigger: '.boxtest',
-    //         start: '0% 80%',  // Commence l'augmentation à ce point
-    //         end: '100% 85%',  // Commence à diminuer après ce point
-    //         scrub: true,      // Synchronisation avec le défilement
-    //         markers: true,    // Marqueurs visibles pour débogage
-    //         onUpdate: function(self) {
-    //             const progress = self.progress; // Progrès de l'animation entre 0 et 1
-    //             const newOpacity = progress <= 0.5 ? progress * 2 : 2 - (progress * 2); // Augmentation puis réduction
-    //             gsap.set('.boxtest', { opacity: newOpacity });
-    //         }
-    //     }
-    // });
 });
 
 function  createSectionOneHtml(){
@@ -57,7 +46,7 @@ function  createSectionOneHtml(){
             <div class="box2">
                 <h2>Ewen FILY </h2>
                 <p>${age} ans <br> Actuellement en 3<sup>ème</sup> année à l'IUT de Lannion en BUT informatique.</br></p>
-                <p class="cv-bt"><a href="/documents/FILY_Ewen_CV_links.pdf" target="_blank">Mon CV</a></p>
+<!--                <p class="cv-bt"><a href="/documents/FILY_Ewen_CV_links.pdf" target="_blank">Mon CV</a></p>-->
             </div>
         </div>`;
 
