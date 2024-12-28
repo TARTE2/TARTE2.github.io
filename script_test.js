@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Événement pour le zoom
     $('canvas').on('wheel', (event) => {
         event.preventDefault(); // Empêche le défilement de la page
-        camera.position.z += event.deltaY * 0.003; // Zoom avant/arrière
 
+        camera.position.z += event.originalEvent.deltaY * 0.001; // Zoom avant/arrière
         // Stoppe la rotation pendant 2 secondes
         rotating = false;
         setTimeout(() => {
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentGroup = null; // Conserver une référence au groupe actuel
 
     function loadModel(content, scene) {
-        console.log(content)
+
         loader.load(
             content,
             function (gltf) {
@@ -169,8 +169,6 @@ document.addEventListener('DOMContentLoaded', function() {
                             : node.geometry.attributes.position.count / 3;
                     }
                 });
-                console.log("Nombre total de sommets (vertices) :", totalVertices);
-                console.log("Nombre total de faces :", totalFaces);
 
                 // Mise à jour de la fonction de rendu pour faire tourner le groupe
                 function loop() {
