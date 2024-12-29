@@ -66,6 +66,49 @@ $(document).ready(function () {
         }
     });
 
+    // Sélectionne toutes les balises <a> sauf celles dans <header>
+    const $links = $('a:not(header a)');
+
+
+    // Fonction pour vérifier si l'élément est visible dans la fenêtre de visualisation
+    function isInViewport(element) {
+        console.log(element)
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    // Fonction pour ajouter l'effet de secousse
+    function addShakeEffect() {
+        $links.each(function() {
+            const $link = $(this);
+            if (isInViewport($link[0])) {
+                console.log($link);
+                $link.addClass('shake');
+                // Supprime la classe après l'animation pour permettre de répéter l'effet
+                setTimeout(function() {
+                    $link.removeClass('shake');
+                }, 1000); // Durée de l'animation
+            }
+        });
+    }
+
+    // Ajoute l'effet de secousse lorsque l'utilisateur fait défiler la page
+    $(window).on('scroll', addShakeEffect);
+    $(window).on('resize', addShakeEffect);
+
+    // Ajoute l'effet de secousse au chargement de la page
+    $(window).on('load', addShakeEffect);
+
+    // Appelle la fonction une fois au chargement initial de la page
+    addShakeEffect();
+
+
+
 
 });
 
@@ -84,7 +127,6 @@ function  createSectionOneHtml(){
 <!--                <p class="cv-bt"><a href="/documents/FILY_Ewen_CV_links.pdf" target="_blank">Mon CV</a></p>-->
             </div>
         </div>
-        
         <h1>Alternance</h1>
         <div class="box2">
             <div style="position: relative">
@@ -110,11 +152,7 @@ function  createSectionOneHtml(){
                     
                 </div>
             </div>
-        </div>
-
-
-`;
-
+        </div>`;
 }
 
 

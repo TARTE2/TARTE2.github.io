@@ -42,19 +42,35 @@ p{
     margin-left: 1em;
 }
 
-
 .container {
     display: flex;
     justify-content: flex-end;
     padding-top: 0.1em;
     padding-right: 1em ;
-
 }
 
 
 .full-description {
     display: none;
   }
+
+/* Classe pour l'effet de secousse */
+@keyframes shake {
+    0%, 100% {
+        transform: translateY(0);
+
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateY(-5px)  ;
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateY(5px) ;
+    }
+}
+
+.shake {
+    animation: shake 1s;
+}
 /* Menu et button home*/
 
 
