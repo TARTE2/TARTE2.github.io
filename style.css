@@ -29,19 +29,25 @@ body a {
     color: #000
 }
 
+.highlight {
+    color: #ff6347; /* Couleur tomate */
+    font-weight: bold; /* Gras */
+    /*background-color: #f0f8ff; !* Fond bleu clair *!*/
+    /*padding: 2px 4px; !* Espacement interne *!*/
+    border-radius: 4px; /* Coins arrondis */
+}
+
 
 p{
-    margin: 1em;
+    margin-left: 1em;
 }
 
-section{
-    padding: 4em 1em 4em 1em;
-}
 
 .container {
     display: flex;
     justify-content: flex-end;
-    padding: 20px;
+    padding-top: 0.1em;
+    padding-right: 1em ;
 
 }
 
@@ -105,13 +111,21 @@ body.dark-mode .pp{
    display: flex;
    padding: 2em;
    justify-content: space-evenly;
+    padding-bottom: 10em;
 
 }
+
+.box2{
+    height: min-content;
+}
+
+
+
+
 .box1 p{
     line-height: 2rem;
-    max-width: 600px;
 }
-.box2{
+.description_me{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -119,7 +133,7 @@ body.dark-mode .pp{
 
 }
 
-.box2 > :first-child{
+.description_me > :first-child{
     margin-right: auto;
 }
 
@@ -142,7 +156,63 @@ body.dark-mode .pp{
     box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.4);
 }
 
+#background_mobil-inn{
+    position: relative; /* Permet de positionner l'image correctement */
+    top: 0;
+    left: 0;
+    width: 100%; /* S'étend sur toute la largeur de la div */
+    height: 100%; /* S'étend sur toute la hauteur de la div */
+    object-fit: cover; /* Assure que l'image remplit la div sans déformation */
+    z-index: 0; /* S'assurer que l'image reste derrière les autres éléments */
 
+}
+
+#text-overlay{
+    position: absolute;
+    top: 20%;
+    left: 0%;
+    padding-left: 2em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 40%;
+    height: calc(100% - 40%);
+}
+
+.diagonal-cut {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 99%;
+    height: 100%;
+    background-color: #2ECB78;
+    clip-path: polygon(0% 0%, 30% 0%,60% 100%, 0% 100%);
+
+}
+
+#logo_mobil-inn{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 0.5em;
+    margin: 1em;
+    transition: all 0.3s ease 0s;
+    width: auto
+
+}
+
+#logo_mobil-inn:hover{
+    transform: translateY(-7px);
+}
+
+#logo_mobil-inn img{
+    width: 200px;
+    height: auto;
+}
 
 
 
@@ -254,13 +324,13 @@ body.dark-mode .pp{
     opacity: 0;
 }
 
-#project1{
+#project1, #project2{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-#container_project1{
+.project_description{
     align-self: center;
     margin-left: 2em;
 }
@@ -268,71 +338,48 @@ body.dark-mode .pp{
 #img_threeJS {
     width: 15em;
     transition: all 0.3s ease 0s;
+    border-radius: 20px;
 
 }
 
 #img_threeJS:hover{
     transform: translateY(-7px);
+    background: rgba(128, 128, 128, 0.3);
+}
+
+#img_event_config {
+    width: 15em;
+    transition: all 0.3s ease 0s;
+    border-radius: 20px;
+
+}
+
+#img_event_config:hover{
+    transform: translateY(-7px);
+    background: rgba(128, 128, 128, 0.3);
 }
 
 
 
+.container_project{
+    margin-bottom: 12em;
+    margin-top: 12em;
+    opacity: 0;
+    transform: translateX(-50px); /* Une petite translation initiale */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
+#aboutMe{
+    padding-bottom: 5em;
+}
 
-
-
+h1{
+    padding-left: 2vh;
+    font-size: xxx-large;
+}
 
 /*Fin Portfolio*/
 
-/* Debut Slider */
-.att{
-    padding: 2rem  ;
-}
-.slider{
-    position: relative;
-    max-width: 60rem;
-    margin: 0 auto;
-
-
-}
-
-.slides{
-    display: flex;
-    aspect-ratio: 16/9;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    overflow: hidden;
-    scroll-behavior: smooth;
-    box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
-}
-
-.slides img{
-    flex: 1 0 100%;
-    scroll-snap-align: start;
-    object-fit: cover;
-}
-
-.slider-nav{
-    display: flex;
-    column-gap: 1rem;
-    position: absolute;
-    bottom: 1.25rem;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.slider-nav a{
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 50%;
-    background-color: #fff;
-    opacity: 0.75;
-    transition: opacity ease 250ms;
-
-}
-.slider-nav a:hover{
-    opacity: 1;
-}
-/*Fin du Slider */
 .adresses{
     list-style: none;
     display: flex;
@@ -487,15 +534,13 @@ footer img {
 
 }
 
-#contact{
-    margin: 1em;
-}
 
 #container_btn_iut{
     height: fit-content;
     width: fit-content;
     margin: 1em auto;
     transition: all 0.3s ease 0s;
+    padding-top: 5em;
 
 }
 

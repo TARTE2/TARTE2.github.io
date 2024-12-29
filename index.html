@@ -41,18 +41,27 @@
     </section>
 
     <section id="myProjects">
+        <h1>Portfolio</h1>
 
-        <div id="project1">
-            <div id="container_project1">
-                <h2>TEST POUR TEST DDDDDD</h2>
-                <p>fezhjlzhfzejkhfezkjezfh  hzjkfhezk hfejhjzehkh hfezjkhezk </p>
+        <div id="project1" class="container_project">
+            <div class="project_description">
+                <h2>ModelViewer avec <span class="highlight">Three.js</span></h2>
+                <p>
+                    <span class="highlight">ModelViewer</span> est un petit projet interactif permettant d'<span class="highlight">importer</span> et de
+                    <span class="highlight">visualiser</span> des fichiers 3D au format <span class="highlight">GLB</span> (GL Transmission Format).
+                    Utilisant la puissante bibliothèque <span class="highlight">Three.js</span>, ce visualiseur offre une interface intuitive pour explorer des modèles
+                    3D en temps réel. Les utilisateurs peuvent <span class="highlight">charger</span> leurs propres fichiers GLB via une interface de sélection de fichiers,
+                    puis <span class="highlight">interagir</span> avec le modèle en utilisant des fonctionnalités telles que le <span class="highlight">zoom</span>,
+                    la <span class="highlight">rotation</span> et le <span class="highlight">déplacement de la caméra</span>.
+                </p>
+
             </div>
 
             <a href="threeJS_demo.html" target="_parent">
 
                 <?xml version="1.0" encoding="UTF-8"?>
                 <svg id="img_threeJS" fill="none" stroke-linecap="square" stroke-miterlimit="10" version="1.1" viewBox="0 0 226.77 226.77" xmlns="http://www.w3.org/2000/svg">
-                    <g transform="translate(8.964 4.2527)" fill-rule="evenodd" stroke="#000" stroke-linecap="butt" stroke-linejoin="round" stroke-width="4">
+                    <g transform="translate(8.964 4.2527)" fill-rule="evenodd" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="round" stroke-width="4">
                         <path d="m63.02 200.61-43.213-174.94 173.23 49.874z"/>
                         <path d="m106.39 50.612 21.591 87.496-86.567-24.945z"/>
                         <path d="m84.91 125.03-10.724-43.465 43.008 12.346z"/>
@@ -62,9 +71,29 @@
                     </g>
                 </svg>
             </a>
-            <div>
+
+
+        </div>
+
+        <div id="project2" class="container_project">
+            <div class="project_description">
+                <h2>Event Configurator avec <span class="highlight">Sortable.js</span></h2>
+                <p>
+                    <span class="highlight">Event Configurator</span> est un projet permettant d'<span class="highlight">éditer</span> un fichier de configuration JSON
+                    via une interface intuitive (sujet de stage chez <span class="highlight">Mobil-inn</span>). Utilisant la bibliothèque <span class="highlight">Sortable.js</span> pour le <span class="highlight">drag and drop</span>
+                    des éléments HTML, ce configurateur facilite la gestion et l'organisation dynamique des données JSON.
+                    <span class="highlight">Bootstrap</span> est également employé pour fournir des <span class="highlight">composants front-end</span> modernes et réactifs.
+                </p>
+
 
             </div>
+
+            <a href="event_configurator.html" target="_parent">
+                <svg id="img_event_config" class="svg-icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"></path>
+                </svg>
+
+            </a>
 
         </div>
 
@@ -76,7 +105,7 @@
 
 <footer>
     <div id="contact">
-        <h2>Contact</h2>
+        <h1>Contact</h1>
 
         <ul class="adresses">
             <li><a href="mailto:ewen.fily@etudiant.univ-rennes1.fr"> ewen.fily@etudiant.univ-rennes1.fr </a></li>
