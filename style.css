@@ -158,7 +158,7 @@ body.dark-mode .pp{
     margin-right: auto;
 }
 
-.cv-bt a{
+.cv-bt{
     background-color: rgb(255, 255, 255);
     transition: all 0.3s ease 0s;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -166,15 +166,14 @@ body.dark-mode .pp{
     border-radius: 5px;
 
 }
-.dark-mode .cv-bt a{
+.dark-mode .cv-bt {
     box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.4);
     background-color: rgb(0, 0, 0);
     color: #ffffff;
 
 }
-.cv-bt a:hover{
+.cv-bt:hover{
     transform: translateY(-7px);
-    box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.4);
 }
 
 #background_mobil-inn{

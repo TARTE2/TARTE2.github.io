@@ -124,7 +124,7 @@ function  createSectionOneHtml(){
             <div class="description_me">
                 <h2>Ewen FILY </h2>
                 <p>${age} ans <br> Actuellement en 3<sup>ème</sup> année à l'IUT de Lannion en BUT informatique.</p>
-<!--                <p class="cv-bt"><a href="/documents/FILY_Ewen_CV_links.pdf" target="_blank">Mon CV</a></p>-->
+                <p class="cv-bt"><a href="/documents/FILY_Ewen_CV_links.pdf" target="_blank">Mon CV</a></p>
             </div>
         </div>
         <h1>Alternance</h1>
