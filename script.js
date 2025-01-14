@@ -131,7 +131,7 @@ function  createSectionOneHtml(){
         <div class="box2">
             <div style="position: relative">
                 <img id="background_mobil-inn" src="images/background_mobil-inn.jpg">
-                <a id="logo_mobil-inn" href="https://mobil-inn.com/" target="_parent">
+                <a id="logo_mobil-inn" href="https://mobil-inn.com/" target="_blank">
                         <img src="images/mobil-inn_logo.png">
                 </a>
                 <div class="diagonal-cut"></div>
