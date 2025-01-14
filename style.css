@@ -14,6 +14,11 @@ body{
 
 }
 
+li {
+    list-style: none;
+    padding: 0.5em;
+}
+
 h1{
     font-style: italic;
 }
@@ -127,7 +132,7 @@ body.dark-mode .pp{
    display: flex;
    padding: 2em;
    justify-content: space-evenly;
-    padding-bottom: 10em;
+    padding-bottom: 16em;
 
 }
 

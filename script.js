@@ -72,7 +72,7 @@ $(document).ready(function () {
 
     // Fonction pour vérifier si l'élément est visible dans la fenêtre de visualisation
     function isInViewport(element) {
-        console.log(element)
+
         const rect = element.getBoundingClientRect();
         return (
             rect.top >= 0 &&
@@ -87,7 +87,7 @@ $(document).ready(function () {
         $links.each(function() {
             const $link = $(this);
             if (isInViewport($link[0])) {
-                console.log($link);
+
                 $link.addClass('shake');
                 // Supprime la classe après l'animation pour permettre de répéter l'effet
                 setTimeout(function() {
@@ -154,9 +154,4 @@ function  createSectionOneHtml(){
             </div>
         </div>`;
 }
-
-
-
-
-
 
