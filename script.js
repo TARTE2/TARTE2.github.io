@@ -124,13 +124,11 @@ function  createSectionOneHtml(){
             <div class="description_me">
                 <h2>Ewen FILY </h2>
                 <p>
-                    ${age} ans <br> Actuellement en 3<sup>ème</sup> année à l'IUT de Lannion en BUT informatique.<br><br>
+                    Agé de ${age} ans je suis actuellement en 3<sup>ème</sup> année de BUT Informatique à l'IUT de Lannion.<br><br>
                     
-                    Je suis à la recherche d'un poste de Développeur pour Septembre 2025<br> 
+                    Je suis à la recherche d’un poste de développeur à pourvoir à partir de septembre 2025,<br> 
                     
-                    à la suite de l'obtention de mon diplôme pour août 2025.
-                
-                
+                    suite à l’obtention de mon diplôme prévue en août 2025.
                 </p>
                 <p class="cv-bt"><a href="documents/Ewen Fily - Développeur Full Stack - CV L.pdf" target="_blank">Mon CV</a></p>
             </div>
