@@ -130,7 +130,7 @@ function  createSectionOneHtml(){
                     
                     suite à l’obtention de mon diplôme prévue en août 2025.
                 </p>
-                <p class="cv-bt"><a href="documents/Ewen_Fily-Développeur_Full_Stack_CV.pdf" target="_blank">Mon CV</a></p>
+                <p class="cv-bt"><a href="documents/Ewen_Fily-Developpeur_Full_Stack_CV.pdf" target="_blank">Mon CV</a></p>
             </div>
         </div>
         <h1>Alternance</h1>
