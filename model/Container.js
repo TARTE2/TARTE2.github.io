@@ -114,10 +114,8 @@ Container.prototype = {
         this.init_btn_modal_field();
 
         $('#sidebarToggle').on('click', () => {
-            $('#config-event-navbar').addClass('sidebar-open');
+            $('#config-event-navbar').toggleClass('sidebar-open');
         });
-
-        $('#sidebarToggle').trigger('click');
 
         $('#btn-close-offcanvas').on('click', () => {
             $('#config-event-navbar').removeClass('sidebar-open');

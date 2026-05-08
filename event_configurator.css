@@ -431,14 +431,17 @@ h3 {
 .new-field {
     text-align: center;
     display: flex;
-
-    justify-content: left;
+    justify-content: center;
+    align-items: center;
     height: 92px;
     width: 180px;
 }
 
 .side-items {
-    align-items: flex-start;
+    align-items: center;
+    height: auto !important;
+    overflow: visible !important;
+    flex-wrap: nowrap !important;
 }
 
 .modal-header {

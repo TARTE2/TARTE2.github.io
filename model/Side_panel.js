@@ -25,9 +25,9 @@ Side_panel.prototype = {
                 <ul id="category-panel-list" class="side-items d-flex flex-column gap-3 align-items-center"></ul>    
             </div>
             
-            <div id="field-panel" class="side-panel #686868">
+            <div id="field-panel" class="side-panel">
                 <h5 class="title text-center text-light">Évenements</h5>
-                <ul id="field-panel-list" class="side-items d-flex flex-column align-items-center ps-3"></ul>    
+                <ul id="field-panel-list" class="side-items d-flex flex-column align-items-center gap-2"></ul>    
             </div>
           </div>
         </div>`;

@@ -7,6 +7,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="assets/jquery-3.7.1.min.js"></script>
 
     <script src="script_THREE.js"></script>
@@ -27,7 +28,15 @@
     <label for="rotationCheckbox">Désactiver la rotation:</label>
     <input type="checkbox" id="rotationCheckbox">
 
-    <h4>Importer un modèle GLB</h4>
+    <div id="model-select-box" style="margin-top: 15px;">
+        <label for="modelSelect">Choisir un modèle :</label>
+        <select id="modelSelect">
+            <option value="model/camera.glb" selected>Caméra</option>
+            <option value="model/halo_reach_emile-a239.glb">Halo Reach Emile</option>
+        </select>
+    </div>
+
+    <h4 style="margin-top: 15px;">Ou Importer un modèle personnel</h4>
     <input type="file" id="fileInput" accept=".glb,.gltf">
 </div>
 

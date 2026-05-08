@@ -2,8 +2,11 @@
 
 
 body{
-    background: grey;
-    font-family: 'Roboto Mono',sans-serif;
+    background: #f5f6f8;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Outfit', sans-serif;
 }
 
 .tab-content{

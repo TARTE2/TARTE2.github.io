@@ -4,10 +4,26 @@ document.addEventListener('DOMContentLoaded', function() {
     camera.position.set(0, 0, 5); // Reculer la caméra pour une meilleure vue
 
     // Initialise le renderer avec fond transparent et antialiasing
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); // Activer l'anticrénelage
+    const renderer = new THREE.WebGLRenderer({ antialias: true }); // Activer l'anticrénelage
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     document.body.appendChild(renderer.domElement);// Ajoutez le renderer à la page
+
+    // Création de l'environnement "Pièce blanche pro"
+    scene.background = new THREE.Color(0xf5f6f8); // Blanc/Gris très clair
+    scene.fog = new THREE.Fog(0xf5f6f8, 3, 15); // Effet de profondeur
+
+    // Ajout d'une grille au sol (effet plan de travail pro)
+    const floorGrid = new THREE.GridHelper(50, 100, 0xa0a0a0, 0xe0e0e0);
+    scene.add(floorGrid);
+    scene.userData.floorGrid = floorGrid;
+
+    // Ajout d'une grille au fond (mur vertical)
+    const backGrid = new THREE.GridHelper(50, 100, 0xa0a0a0, 0xe0e0e0);
+    backGrid.rotation.x = Math.PI / 2; // Rotation à 90 degrés pour la rendre verticale
+    backGrid.position.z = -5; // La placer en arrière-plan
+    scene.add(backGrid);
+    scene.userData.backGrid = backGrid;
 
     // Sélectionnez l'élément du slider pour la taille
     const $scaleSlider = $('#scaleSlider');
@@ -19,78 +35,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const loader = new THREE.GLTFLoader();
     let model; // Déclarez la variable pour le modèle en dehors de la fonction de chargement
 
-    loadModel('model/halo_reach_emile-a239.glb',scene);
+    const $modelSelect = $('#modelSelect');
+    
+    // Load the default selected model
+    loadModel($modelSelect.val(), scene);
 
-    let rotating = true; // Variable pour contrôler la rotation
-    let lastMouseX, lastMouseY; // Pour le suivi de la souris
-    let isMouseDown = false; // Pour vérifier si le bouton de la souris est enfoncé
-    let isMovingCamera = false; // Indicateur pour savoir si on déplace la caméra
-    let previousMousePosition = { x: 0, y: 0 }; // Position précédente de la souris
-
-    // Événement pour le zoom
-    $('canvas').on('wheel', (event) => {
-        event.preventDefault(); // Empêche le défilement de la page
-
-        camera.position.z += event.originalEvent.deltaY * 0.001; // Zoom avant/arrière
-        // Stoppe la rotation pendant 2 secondes
-        rotating = false;
-        setTimeout(() => {
-            rotating = true;
-        }, 2000);
-    });
-
-    // Événements pour changer l'orientation de l'objet
-    $('canvas').on('mousedown', function(event) {
-        if (event.button === 0) { // Clic gauche
-            isMouseDown = true;
-            lastMouseX = event.clientX;
-            lastMouseY = event.clientY;
-
-            // Si la touche Maj est enfoncée, commencer à déplacer la caméra
-            if (event.shiftKey) {
-                isMovingCamera = true;
-                previousMousePosition.x = event.clientX;
-                previousMousePosition.y = event.clientY;
-            } else {
-                // Stoppe la rotation pendant 2 secondes si ce n'est pas un mouvement de caméra
-                rotating = false;
-                setTimeout(() => {
-                    rotating = true;
-                }, 2000);
-            }
+    // Event listener for model change
+    $modelSelect.on('change', function() {
+        const selectedModelUrl = $(this).val();
+        if (selectedModelUrl) {
+            loadModel(selectedModelUrl, scene);
         }
     });
 
-    $('canvas').on('mousemove', (event) => {
-        if (isMouseDown) {
-            if (isMovingCamera) {
-                const deltaX = event.clientX - previousMousePosition.x;
-                const deltaY = event.clientY - previousMousePosition.y;
-
-                // Ajuster la position de la caméra en fonction du mouvement de la souris
-                camera.position.x -= deltaX * 0.01; // Ajuster la vitesse de mouvement selon vos besoins
-                camera.position.y += deltaY * 0.01;
-
-                // Mettre à jour la position précédente de la souris
-                previousMousePosition.x = event.clientX;
-                previousMousePosition.y = event.clientY;
-            } else {
-                const deltaX = event.clientX - lastMouseX;
-                const deltaY = event.clientY - lastMouseY;
-
-                model.rotation.y += deltaX * 0.01; // Modifier la rotation en fonction du mouvement de la souris
-                model.rotation.x += deltaY * 0.01;
-
-                lastMouseX = event.clientX;
-                lastMouseY = event.clientY;
-            }
-        }
-    });
-
-    $(window).on('mouseup', () => {
-        isMouseDown = false;
-        isMovingCamera = false; // Réinitialiser le déplacement de la caméra
-    });
+    // Ajout des contrôles orbitaux (Déplacement de la caméra)
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true; // Mouvement fluide
+    controls.dampingFactor = 0.05;
+    controls.minDistance = 2; // Zoom avant maximum
+    controls.maxDistance = 20; // Zoom arrière maximum
+    controls.target.set(0, 0, 0); // La caméra fixe le centre
 
     function handleFile(event) {
         const file = event.target.files[0];
@@ -145,18 +109,48 @@ document.addEventListener('DOMContentLoaded', function() {
                 scene.add(group);
                 currentGroup = group; // Mettre à jour la référence
 
+                // Centrage automatique et mise à l'échelle du modèle
+                const box = new THREE.Box3().setFromObject(model);
+                const size = box.getSize(new THREE.Vector3()).length();
+                const center = box.getCenter(new THREE.Vector3());
+
+                // Calculer une échelle de base pour que le modèle rentre bien dans l'écran (taille cible ~ 4)
+                model.userData.baseScale = 4 / size;
+                
+                // Centrer le modèle
+                model.position.x = -center.x * model.userData.baseScale;
+                model.position.y = -center.y * model.userData.baseScale;
+                model.position.z = -center.z * model.userData.baseScale;
+
                 // Positionner le modèle dans le groupe
                 group.add(model);
-                model.position.set(0, -1, 0); // Position par rapport au groupe
-                model.scale.set(4, 4, 4); // Ajustez la taille si nécessaire
 
-                // Ajouter les lumières (si nécessaire, vous pourriez déplacer ces lumières hors de cette fonction si elles sont constantes)
-                let ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-                scene.add(ambientLight);
+                // Placer la grille au sol exactement sous le modèle
+                const finalBox = new THREE.Box3().setFromObject(model);
+                if (scene.userData.floorGrid) {
+                    scene.userData.floorGrid.position.y = finalBox.min.y;
+                }
+                
+                // Ajuster la hauteur de la grille arrière pour qu'elle corresponde au sol
+                if (scene.userData.backGrid) {
+                    scene.userData.backGrid.position.y = finalBox.min.y;
+                }
 
-                let directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.5);
-                directionalLight1.position.set(0, 5, 5).normalize();
-                scene.add(directionalLight1);
+                // Ajouter les lumières seulement si elles n'existent pas déjà
+                if (!scene.userData.lightsAdded) {
+                    let ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+                    scene.add(ambientLight);
+
+                    let directionalLight1 = new THREE.DirectionalLight(0xffffff, 1.0);
+                    directionalLight1.position.set(0, 5, 5).normalize();
+                    scene.add(directionalLight1);
+
+                    let directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
+                    directionalLight2.position.set(-5, -5, -5).normalize();
+                    scene.add(directionalLight2);
+                    
+                    scene.userData.lightsAdded = true;
+                }
 
                 // Compte des sommets et des faces
                 let totalVertices = 0;
@@ -170,20 +164,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                // Mise à jour de la fonction de rendu pour faire tourner le groupe
+                // Mise à jour de la fonction de rendu pour faire tourner la caméra
                 function loop() {
                     requestAnimationFrame(loop);
-                    rotating = !$rotationCheckbox.prop('checked');
+                    
+                    let rotating = !$rotationCheckbox.prop('checked');
+                    
+                    // L'auto-rotation fait désormais tourner la caméra autour de la scène
+                    controls.autoRotate = rotating;
+                    controls.autoRotateSpeed = $rotateSlider.val() * 2; // Ajustement de la vitesse de rotation
+                    
+                    controls.update(); // Nécessaire pour la fluidité (damping) et l'auto-rotation
 
-                    model.scale.set(
-                        4 * $scaleSlider.val(),
-                        4 * $scaleSlider.val(),
-                        4 * $scaleSlider.val()
-                    );
-
-                    // Effectuer la rotation du groupe uniquement si en rotation
-                    if (group && rotating) {
-                        group.rotation.y += 0.01 * $rotateSlider.val(); // Faites tourner le groupe autour de l'axe Y
+                    if (model && model.userData.baseScale) {
+                        const currentScale = model.userData.baseScale * $scaleSlider.val();
+                        model.scale.set(currentScale, currentScale, currentScale);
                     }
 
                     renderer.render(scene, camera);

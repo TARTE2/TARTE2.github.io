@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio FILY Ewen</title>
+    <meta name="description"
+        content="Portfolio de Ewen FILY, développeur full-stack. Découvrez mes projets, mon parcours et mes compétences.">
 
     <link rel="icon" href="images/icon/dossier-de-portefeuille 16.png">
     <link rel="icon" href="images/icon/dossier-de-portefeuille 32.png">
@@ -11,120 +15,334 @@
     <link rel="icon" href="images/icon/dossier-de-portefeuille 256.png">
     <link rel="icon" href="images/icon/dossier-de-portefeuille 512.png">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- GSAP -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="assets/jquery-3.7.1.min.js"></script>
-    <script src="script.js"></script>
+
+    <!-- Scripts -->
+    <script src="script.js" defer></script>
 </head>
+
 <body>
-<header id="home">
-    <a href="#home" class="home-button">
-        <i class="fas fa-home"></i> Home
-    </a>
+    <!-- Background Elements -->
+    <div class="bg-gradient-1"></div>
+    <div class="bg-gradient-2"></div>
+    <div class="noise-overlay"></div>
 
+    <header id="header">
+        <a href="#home" class="home-button">
+            <i class="fas fa-home"></i> <span>Home</span>
+        </a>
+        <nav class="nav-container">
+            <ul class="menu">
+                <li><a href="#aboutMe">À propos</a></li>
+                <li><a href="#myProjects">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                        <i class="fas fa-sun light-icon"></i>
+                        <i class="fas fa-moon dark-icon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="container">
-        <ul class="menu">
-            <li><a href="#aboutMe">À propos de moi</a></li>
-            <li><a href="#myProjects">Portfolio</a></li>
-            <li><a href="#contact">Contacts</a></li>
-            <li id="darkModeToggle">
-                <button class="dark-mode-button" aria-label="Dark Mode"></button>
-            </li>
-        </ul>
+    <main id="home">
+        <!-- Section Hero / About Me -->
+        <section id="aboutMe" class="section pt-hero">
+            <div class="container section-header">
+                <h1 class="reveal-text">À propos de moi</h1>
+            </div>
+
+            <div class="container about-grid">
+                <!-- Profile Card -->
+                <div class="about-card glass-panel fade-up">
+                    <div class="profile-header">
+                        <div class="profile-img-container">
+                            <img class="profile-pic" src="images/Ewen2-min.jpg" alt="Photo Ewen FILY">
+                            <div class="img-glow"></div>
+                        </div>
+                        <h2>Ewen FILY</h2>
+                        <span class="badge">Développeur Full-Stack</span>
+                    </div>
+
+                    <div class="description-me">
+                        <div class="bio-text">
+                            <p>Âgé de <span id="dynamic-age" class="highlight"></span> ans et diplômé du BUT Informatique de l'IUT de Lannion.</p>
+                            <p>Je suis actuellement <span class="highlight">Exploitant Support Informatique</span> chez Logilec Leclerc depuis septembre 2025.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formation Card -->
+                <div class="formation-card glass-panel fade-up delay-1">
+                    <div class="experience-header">
+                        <h2>Formation</h2>
+                    </div>
+                    <div class="formation-content">
+                        <div class="formation-logo">
+                            <img src="images/icon/Logo_IUT_Lannion.svg" alt="Logo IUT Lannion"
+                                class="bg-white p-2 rounded">
+                        </div>
+                        <div class="formation-details">
+                            <h3 class="highlight">BUT Informatique</h3>
+                            <h4>IUT de Lannion (Université de Rennes)</h4>
+                            <p class="formation-dates"><i>2022 - 2025 (3<sup>ème</sup> année en cours)</i></p>
+                            <p class="mt-2">Formation technique et théorique complète en développement logiciel,
+                                administration système, et gestion de bases de données.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experiences Card -->
+                <div class="experience-card glass-panel fade-up">
+                    <div class="experience-header">
+                        <h2>Expériences Professionnelles</h2>
+                    </div>
+
+                    <div class="experiences-list" style="display: flex; flex-direction: column; gap: 1.5rem; padding: 0 2rem 2rem;">
+                        <!-- Logilec Leclerc -->
+                        <div class="experience-item" style="position: relative; overflow: hidden; border-radius: 16px; min-height: 280px; display: flex; align-items: flex-end;">
+                            <div class="mobil-inn-bg" style="background-image: url('images/logilec_1.jpg');"></div>
+                            <div class="mobil-inn-overlay"></div>
+                            <div class="experience-content">
+                                <div class="company-top">
+                                    <div class="company-logo bg-white rounded p-1" style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px;">
+                                        <img src="images/Logilec_logo.png" alt="Logilec Leclerc Logo" style="max-width: 100%; max-height: 100%;">
+                                    </div>
+                                    <div class="company-titles">
+                                        <h3 class="company-name">Logilec Leclerc</h3>
+                                        <span class="project-name">Depuis Septembre 2025</span>
+                                    </div>
+                                </div>
+
+                                <div class="role-details">
+                                    <h4 class="role-title highlight" style="margin-bottom: 0.5rem;">Exploitant Support Informatique</h4>
+                                    <ul style="list-style-type: disc; margin-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+                                        <li>Assurer la mise en exploitation des SI et leurs applications</li>
+                                        <li>Traiter les demandes faites au support informatique</li>
+                                        <li>Suivre l’exploitation informatique quotidiennement</li>
+                                        <li>Participer au déploiement des applications</li>
+                                        <li>Contribuer à la sécurité de l’information</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mobil-inn -->
+                        <div class="experience-item" style="position: relative; overflow: hidden; border-radius: 16px; min-height: 280px; display: flex; align-items: flex-end;">
+                            <div class="mobil-inn-bg" style="background-image: url('images/background_mobil-inn.jpg');"></div>
+                            <div class="mobil-inn-overlay"></div>
+                            <div class="experience-content">
+                                <div class="company-top">
+                                    <a class="company-logo" href="https://mobil-inn.com/" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px;">
+                                        <img src="images/mobil-inn_logo.png" alt="Mobil-inn Logo" style="max-width: 100%; max-height: 100%;">
+                                    </a>
+                                    <div class="company-titles">
+                                        <h3 class="company-name">Mobil-inn</h3>
+                                        <span class="project-name">Projet iSmartcollect (Alternance)</span>
+                                    </div>
+                                </div>
+
+                                <p class="tagline"><i>"Au quotidien avec les acteurs de la collecte."</i></p>
+
+                                <div class="role-details">
+                                    <h4 class="role-title highlight">Développeur full-stack</h4>
+                                    <p>Missions diverses telles que la correction de bugs, la création de nouveaux outils from scratch et développements spécifiques.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LinkedIn Card -->
+                <div class="linkedin-card glass-panel fade-up delay-1">
+                    <div class="experience-header">
+                        <h2>Mon Réseau</h2>
+                    </div>
+                    <div class="linkedin-content">
+                        <!-- LinkedIn Official Badge -->
+                        <script src="https://platform.linkedin.com/badges/js/profile.js" async defer
+                            type="text/javascript"></script>
+                        <div class="badge-base LI-profile-badge" data-locale="fr_FR" data-size="large" data-theme="dark"
+                            data-type="HORIZONTAL" data-vanity="ewen-fily-0b8164279" data-version="v1"><a
+                                class="badge-base__link LI-simple-link"
+                                href="https://fr.linkedin.com/in/ewen-fily-0b8164279?trk=profile-badge">Ewen FILY</a>
+                        </div>
+
+                        <div class="linkedin-fallback mt-4">
+                            <p class="text-sm">Découvrez plus de détails sur mes expériences et mes actualités sur mon
+                                profil LinkedIn.</p>
+                            <a href="https://www.linkedin.com/in/ewen-fily-0b8164279/" target="_blank"
+                                class="btn linkedin-btn mt-3">
+                                <i class="fab fa-linkedin"></i> Voir mon Profil
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Portfolio -->
+        <section id="myProjects" class="section">
+            <div class="container section-header">
+                <h1 class="reveal-text">Portfolio</h1>
+                <p class="section-subtitle">Quelques-unes de mes réalisations</p>
+            </div>
+
+            <div class="container projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card glass-panel fade-up">
+                    <div class="project-content">
+                        <h2>ModelViewer avec <span class="highlight">Three.js</span></h2>
+                        <p class="project-desc">
+                            Visualiseur interactif permettant d'importer et de visualiser des fichiers 3D au format
+                            <strong>GLB</strong>. Utilisant <strong>Three.js</strong>, cette application offre une
+                            interface intuitive pour explorer des modèles avec zoom, rotation et déplacement de la
+                            caméra en temps réel.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Three.js</span>
+                        </div>
+                    </div>
+                    <div class="project-visual">
+                        <button class="visual-link project-modal-btn" data-project-url="threeJS_demo.html"
+                            aria-label="Voir la démo de ModelViewer">
+                            <div class="svg-container">
+                                <svg fill="none" stroke-linecap="square" stroke-miterlimit="10" version="1.1"
+                                    viewBox="0 0 226.77 226.77" xmlns="http://www.w3.org/2000/svg">
+                                    <g transform="translate(8.964 4.2527)" fill-rule="evenodd" stroke="currentColor"
+                                        stroke-linecap="butt" stroke-linejoin="round" stroke-width="6">
+                                        <path d="m63.02 200.61-43.213-174.94 173.23 49.874z" />
+                                        <path d="m106.39 50.612 21.591 87.496-86.567-24.945z" />
+                                        <path d="m84.91 125.03-10.724-43.465 43.008 12.346z" />
+                                        <path d="m63.458 38.153 10.724 43.465-43.008-12.346z" />
+                                        <path d="m149.47 62.93 10.724 43.465-43.008-12.346z" />
+                                        <path d="m84.915 125.06 10.724 43.465-43.008-12.346z" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="overlay-hover">
+                                <span>Ouvrir le projet</span>
+                                <i class="fas fa-expand"></i>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card glass-panel fade-up delay-1">
+                    <div class="project-content">
+                        <h2>Event Configurator <span class="highlight">Sortable.js</span></h2>
+                        <p class="project-desc">
+                            Outil d'édition de fichiers de configuration JSON via une interface Drag & Drop (réalisé
+                            chez Mobil-inn). Utilise <strong>Sortable.js</strong> pour faciliter la gestion et
+                            l'organisation dynamique des données. L'interface est moderne et réactive.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Sortable.js</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                    </div>
+                    <div class="project-visual">
+                        <button class="visual-link project-modal-btn" data-project-url="event_configurator.html"
+                            aria-label="Voir la démo Event Configurator">
+                            <div class="svg-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path
+                                        d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="overlay-hover">
+                                <span>Ouvrir le projet</span>
+                                <i class="fas fa-expand"></i>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Contact -->
+        <section id="contact" class="section">
+            <div class="container section-header">
+                <h1 class="reveal-text">Me Contacter</h1>
+                <p class="section-subtitle">Une question, une opportunité ? N'hésitez pas !</p>
+            </div>
+
+            <div class="container contact-grid">
+                <div class="contact-info glass-panel fade-up">
+                    <h2>Informations</h2>
+                    <p>Vous avez une opportunité ou une question ? N'hésitez pas à me laisser un message.</p>
+                </div>
+
+                <div class="contact-form-card glass-panel fade-up delay-1">
+                    <!-- Web3Forms Contact Form -->
+                    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                        <!-- Remplacer "YOUR_ACCESS_KEY_HERE" par la clé d'accès Web3Forms générée -->
+                        <input type="hidden" name="access_key" value="f9510ae9-e325-4857-8bfd-f359671f288c">
+                        <input type="hidden" name="subject" value="Nouveau message depuis le Portfolio">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" id="name" name="name" required placeholder="Votre nom"
+                                class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com"
+                                class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required rows="5" placeholder="Votre message..."
+                                class="form-input"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn primary-btn submit-btn">
+                            <i class="fas fa-paper-plane"></i> Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-bottom text-center">
+            <p>&copy; <span id="current-year"></span> Ewen FILY. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content glass-panel">
+            <button class="close-modal" aria-label="Fermer le projet"><i class="fas fa-times"></i></button>
+            <div class="iframe-container">
+                <iframe id="projectIframe" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
-</header>
-<main>
-    <section id="aboutMe">
-    </section>
-
-    <section id="myProjects">
-        <h1>Portfolio</h1>
-
-        <div id="project1" class="container_project">
-            <div class="project_description">
-                <h2>ModelViewer avec <span class="highlight">Three.js</span></h2>
-                <p>
-                    <span class="highlight">ModelViewer</span> est un petit projet interactif permettant d'<span class="highlight">importer</span> et de
-                    <span class="highlight">visualiser</span> des fichiers 3D au format <span class="highlight">GLB</span> (GL Transmission Format).
-                    Utilisant la puissante bibliothèque <span class="highlight">Three.js</span>, ce visualiseur offre une interface intuitive pour explorer des modèles
-                    3D en temps réel. Les utilisateurs peuvent <span class="highlight">charger</span> leurs propres fichiers GLB via une interface de sélection de fichiers,
-                    puis <span class="highlight">interagir</span> avec le modèle en utilisant des fonctionnalités telles que le <span class="highlight">zoom</span>,
-                    la <span class="highlight">rotation</span> et le <span class="highlight">déplacement de la caméra</span>.
-                </p>
-
-<!--                <h2>Compétences en lien</h2>-->
-<!--                <ul>-->
-<!--                    <li>Compétence 1 : Réaliser</li>-->
-<!--                    <li>Compétence 2 : Optimiser</li>-->
-<!--                    <li>Compétence 4 : Gérer</li>-->
-<!--                </ul>-->
-
-            </div>
-
-            <a href="threeJS_demo.html" target="_blank">
-
-                <?xml version="1.0" encoding="UTF-8"?>
-                <svg id="img_threeJS" fill="none" stroke-linecap="square" stroke-miterlimit="10" version="1.1" viewBox="0 0 226.77 226.77" xmlns="http://www.w3.org/2000/svg">
-                    <g transform="translate(8.964 4.2527)" fill-rule="evenodd" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="round" stroke-width="4">
-                        <path d="m63.02 200.61-43.213-174.94 173.23 49.874z"/>
-                        <path d="m106.39 50.612 21.591 87.496-86.567-24.945z"/>
-                        <path d="m84.91 125.03-10.724-43.465 43.008 12.346z"/>
-                        <path d="m63.458 38.153 10.724 43.465-43.008-12.346z"/>
-                        <path d="m149.47 62.93 10.724 43.465-43.008-12.346z"/>
-                        <path d="m84.915 125.06 10.724 43.465-43.008-12.346z"/>
-                    </g>
-                </svg>
-            </a>
-        </div>
-
-        <div id="project2" class="container_project">
-            <div class="project_description">
-                <h2>Event Configurator avec <span class="highlight">Sortable.js</span></h2>
-                <p>
-                    <span class="highlight">Event Configurator</span> est un projet permettant d'<span class="highlight">éditer</span> un fichier de configuration JSON
-                    via une interface intuitive (sujet de stage chez <span class="highlight">Mobil-inn</span>). Utilisant la bibliothèque <span class="highlight">Sortable.js</span> pour le <span class="highlight">drag and drop</span>
-                    des éléments HTML, ce configurateur facilite la gestion et l'organisation dynamique des données.
-                    <span class="highlight">Bootstrap</span> est également employé pour fournir des <span class="highlight">composants front-end</span> modernes et réactifs.
-                </p>
-
-<!--                <h2>Compétences en lien</h2>-->
-<!--                <ul>-->
-<!--                    <li>Compétence 1 : Réaliser</li>-->
-<!--                    <li>Compétence 2 : Optimiser</li>-->
-<!--                    <li>Compétence 5 : Conduire</li>-->
-<!--                    <li>Compétence 6 : Collaborer</li>-->
-<!--                </ul>-->
-            </div>
-
-            <a href="event_configurator.html" target="_blank">
-                <svg id="img_event_config" class="svg-icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                    <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"></path>
-                </svg>
-            </a>
-
-        </div>
-    </section>
-</main>
-
-
-<footer>
-    <div id="contact">
-        <h1>Contact</h1>
-        <ul class="adresses">
-            <li><a href="mailto:ewen.fily7@gmail.com"> Me contacter par mail</a></li>
-            <li><a href="https://www.linkedin.com/in/ewen-fily-0b8164279/" target="_blank">Mon LinkedIn</a></li>
-        </ul>
-   </div>
-   <div id="container_btn_iut">
-       <a id="btn_iut" href="https://iut-lannion.univ-rennes.fr/" target="_blank">
-           <img src="/images/icon/Logo_IUT_Lannion.svg" alt="logo IUT lannion">
-       </a>
-   </div>
-</footer>
-
 </body>
 
 </html>

@@ -1,163 +1,150 @@
-$(document).ready(function () {
-    // Check for user preference and apply dark mode if enabled
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        $('body').addClass('dark-mode');
-
-    }
-
-    // Toggle dark mode on button click
-    $('#darkModeToggle').click(function () {
-        $('body').toggleClass('dark-mode');
-
-        // Smooth transition for better user experience
-        $('body').css('transition', 'background-color 0.3s ease');
-
-
-    });
-
-    $('#aboutMe').append(createSectionOneHtml())
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Animation pour chaque projet
-    gsap.utils.toArray('.container_project').forEach((project) => {
-        gsap.to(project, {
-            opacity: 1,
-            x: 0, // Revenir à la position initiale
-            duration: { min: 0.4, max: 3 }, // Durée de l'animation
-            ease: "power2.out", // Douceur de l'animation
-            scrollTrigger: {
-                trigger: project,
-                start: 'top 60%', // L'élément commence à s'animer
-                end: 'bottom 80%', // L'élément termine son animation
-                toggleActions: "play none none reverse", // Animation au scroll
-
-            }
-        });
-    });
-
-    // Animation pour .diagonal-cut
-    gsap.from(".diagonal-cut", {
-        x: "-100%",  // Départ hors de l'écran à gauche
-        duration: 0.9,
-        opacity: 0,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".box2",  // Élément déclencheur
-            start: "top 35%",
-            end: "top 10%",
-            toggleActions: "play none none reverse", // Animation au scroll
-
-        }
-    });
-
-    // Animation pour #text-overlay
-    gsap.from("#text-overlay", {
-        x: "-100%",  // Départ hors de l'écran à gauche
-        duration: 1.2,
-        opacity: 0,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".box2", // Même déclencheur que pour .diagonal-cut
-            start: "top 35%",
-            end: "top 10%",
-            // markers: true, // Pour déboguer
-            toggleActions: "play none none reverse", // Animation au scroll
-        }
-    });
-
-    // Sélectionne toutes les balises <a> sauf celles dans <header>
-    const $links = $('a:not(header a)');
-
-
-    // Fonction pour vérifier si l'élément est visible dans la fenêtre de visualisation
-    function isInViewport(element) {
-
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-
-    // Fonction pour ajouter l'effet de secousse
-    function addShakeEffect() {
-        $links.each(function() {
-            const $link = $(this);
-            if (isInViewport($link[0])) {
-
-                $link.addClass('shake');
-                // Supprime la classe après l'animation pour permettre de répéter l'effet
-                setTimeout(function() {
-                    $link.removeClass('shake');
-                }, 1000); // Durée de l'animation
-            }
-        });
-    }
-
-    // Ajoute l'effet de secousse lorsque l'utilisateur fait défiler la page
-    $(window).on('scroll', addShakeEffect);
-    $(window).on('resize', addShakeEffect);
-
-    // Ajoute l'effet de secousse au chargement de la page
-    $(window).on('load', addShakeEffect);
-
-    // Appelle la fonction une fois au chargement initial de la page
-    addShakeEffect();
-
-
-
-
-});
-
-function  createSectionOneHtml(){
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Dynamic Age Calculation
     const birthDate = new Date('2004-01-07');
     const currentDate = new Date();
-
     let age = currentDate.getFullYear() - birthDate.getFullYear();
+    const m = currentDate.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && currentDate.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    
+    const ageElement = document.getElementById('dynamic-age');
+    if (ageElement) {
+        ageElement.textContent = age;
+    }
 
-    return `<h1>À propos de moi</h1>
-        <div class="box1">
-            <img class="pp" src="images/Ewen2-min.jpg" alt="photo Ewen FILY">
-            <div class="description_me">
-                <h2>Ewen FILY </h2>
-                <p>
-                    Agé de ${age} ans je suis actuellement en 3<sup>ème</sup> année de BUT Informatique à l'IUT de Lannion.<br><br>
-                    
-                    Je suis à la recherche d’un poste de développeur à pourvoir à partir de septembre 2025,<br> 
-                    
-                    suite à l’obtention de mon diplôme prévue en août 2025.
-                </p>
-                <p class="cv-bt"><a href="documents/Ewen_Fily-Développeur_Full_Stack_CV.pdf" target="_blank">Mon CV</a></p>
-            </div>
-        </div>
-        <h1>Alternance</h1>
-        <div class="box2">
-            <div style="position: relative">
-                <img id="background_mobil-inn" src="images/background_mobil-inn.jpg">
-                <a id="logo_mobil-inn" href="https://mobil-inn.com/" target="_blank">
-                        <img src="images/mobil-inn_logo.png">
-                </a>
-                <div class="diagonal-cut"></div>
-                <div id="text-overlay">
-                    <div>
-                        <h2 style="font-size: xx-large">Mobil-inn</h2>
-                        <h2>iSmartcollect</h2>
-                        <p><i>Au quotidien avec les acteurs de la collecte.</i></p>
-                    </div>
-                    
-                    <div>
-                        <h3>Développeur full-stack</h3>
-                        
-                        <p>Mes missions sont diverses telles que la correction de bugs, 
-                        la création de nouveaux outils from scratch ainsi que du développement spécifique pour des clients </p>
-                    
-                    </div>
-                    
-                </div>
-            </div>
-        </div>`;
-}
+    // 2. Current Year for Footer
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = currentDate.getFullYear();
+    }
 
+    // 3. Theme Toggle Logic
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+    
+    // Check local storage or system preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        htmlElement.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        htmlElement.setAttribute('data-theme', 'light');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+
+    // 4. Header Scroll Effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // 5. GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initial setup for fade-up elements
+    gsap.set('.fade-up', { y: 50, autoAlpha: 0 });
+    
+    // Animate reveal text
+    gsap.utils.toArray('.reveal-text').forEach(text => {
+        gsap.from(text, {
+            scrollTrigger: {
+                trigger: text,
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+            },
+            y: 30,
+            autoAlpha: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+    });
+
+    // Batch animate fade-up elements
+    ScrollTrigger.batch(".fade-up", {
+        interval: 0.15,
+        batchMax: 3,
+        onEnter: batch => gsap.to(batch, {autoAlpha: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power3.out"}),
+        onLeave: batch => gsap.set(batch, {autoAlpha: 0, y: -50}),
+        onEnterBack: batch => gsap.to(batch, {autoAlpha: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power3.out"}),
+        onLeaveBack: batch => gsap.set(batch, {autoAlpha: 0, y: 50}),
+        start: "top 85%"
+    });
+
+    // Parallax effect on the Mobil-inn background
+    gsap.to('.mobil-inn-bg', {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".experience-card",
+            start: "top bottom", 
+            end: "bottom top",
+            scrub: true
+        }
+    });
+    
+    // Subtle float animation for the SVGs in projects
+    gsap.utils.toArray('.svg-container').forEach(svg => {
+        gsap.to(svg, {
+            y: -10,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    });
+
+    // 6. Modal Logic for Projects
+    const modal = document.getElementById('projectModal');
+    const iframe = document.getElementById('projectIframe');
+    const closeBtn = document.querySelector('.close-modal');
+    const modalBtns = document.querySelectorAll('.project-modal-btn');
+
+    function openModal(url) {
+        iframe.src = url;
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling on main page
+    }
+
+    function closeModal() {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            iframe.src = ''; // Clear iframe to save memory after animation ends
+        }, 300);
+    }
+
+    modalBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = btn.getAttribute('data-project-url');
+            openModal(url);
+        });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close when clicking outside of modal content
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            closeModal();
+        }
+    });
+});
